@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/silver-barnacle.iml" filepath="$PROJECT_DIR$/.idea/modules/silver-barnacle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verax-spark-poc.iml" filepath="$PROJECT_DIR$/.idea/modules/verax-spark-poc.iml" />
+    </modules>
+  </component>
+</project>
