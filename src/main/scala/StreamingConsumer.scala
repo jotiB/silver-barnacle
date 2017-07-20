@@ -10,6 +10,10 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.kafka.common.serialization.StringDeserializer
 
+import org.apache.spark.sql.SparkSession
+
+
+
 object StreamingConsumer {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf()
@@ -18,7 +22,7 @@ object StreamingConsumer {
     conf.set("spark.local.ip", "192.168.144.133")
     conf.set("spark.driver.host", "localhost")
     conf.set("spark.sql.hive.metastore.jars", "builtin")
-    conf.setAppName("Data Analyzer")
+
 
     val sc = new SparkContext(conf)
     // creating the StreamingContext with 5 seconds interval
@@ -43,13 +47,11 @@ object StreamingConsumer {
     messages.foreachRDD { rdd =>
       System.out.println("--- New RDD with " + rdd.partitions.size + " partitions and " + rdd.count + " records")
       rdd.foreach { record =>
-        System.out.println(record.value())
+        val sqlSession = SparkSession.builder.config(rdd.sparkContext.getConf).getOrCreate()
+        val df =  sqlSession.read.json(record.value())
+        df.show()
       }
     }
-
-
-
-
     ssc.start()
     ssc.awaitTermination()
     //ssc.stop(true,true);

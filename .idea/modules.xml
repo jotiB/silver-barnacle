@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/silver-barnacle.iml" filepath="$PROJECT_DIR$/.idea/modules/silver-barnacle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verax-spark-poc.iml" filepath="$PROJECT_DIR$/.idea/modules/verax-spark-poc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/silver-barnacle-build.iml" filepath="$PROJECT_DIR$/.idea/modules/silver-barnacle-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vboxshare-silver-barnacle.iml" filepath="$PROJECT_DIR$/.idea/modules/vboxshare-silver-barnacle.iml" />
     </modules>
   </component>
 </project>
