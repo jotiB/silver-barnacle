@@ -10,8 +10,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types._
-import org.json4s.DefaultFormats
+
 
 
 
@@ -23,6 +22,7 @@ object StreamingConsumer extends Serializable {
       .appName("StructuredStreamingConsumer")
       .enableHiveSupport()
       .getOrCreate()
+
 
     val conf = new SparkConf()
 
@@ -36,6 +36,7 @@ object StreamingConsumer extends Serializable {
     conf.set("spark.driver.host", "10.0.2.15")
 
     val sc = new SparkContext(conf)
+
 
     //sc.getConf.getAll.mkString("\n")
 
@@ -82,12 +83,14 @@ root
 
         // Create a temporary view over transactions received from kafka
 
-        df.createOrReplaceTempView("quotes") // Your DF Operations
-        if (df.count() > 1) {
+        df.createOrReplaceTempView("quotes") // DF Operations
+        /*if (df.count() > 1) {
           val joinDF = spark.sql("select exchange, ticker, lastTradeDate, high, low, open, close, volume from quotes").write.mode("append")
             .saveAsTable("quotes")
           System.out.println(joinDF)
-        }
+        }*/
+        spark.sql("select exchange, ticker, lastTradeDate, high, low, open, close, volume from quotes").write.mode("append")
+          .saveAsTable("quotes")
       }
     })
 
