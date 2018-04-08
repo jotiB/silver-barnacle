@@ -1,0 +1,112 @@
+for /r E:\Music\itune_music\Music %f in (*.mp3) do @copy "%f" h:\music
+
+cat /root/.ssh/id_rsa_mgmt.pub >> /root/.ssh/authorized_keys
+
+mvn install:install-file -Dfile=/usr/hdp/current/kafka-broker/libs/kafka-clients-0.10.1.2.6.1.0-129.jar -DgroupId=org.apache.kafka -DartifactId=kafka-clients -Dversion=0.10.1.2 -Dpackaging=jar
+
+systemctl restart systemd-logind.service
+hostnamectl set-hostname <same name as in /etc/<hostname>
+git config --global user.email "jbiswas@verax.ca" git config --global user.name "jyotinbiswas"
+
+developmentBox.hadoop.verax.ca
+
+./kafka-stock-quotes producer 15 symbols.txt
+
+hadoop fs -chmod -R 777 /apps/hive/warehouse
+/usr/hdp/current/spark2-client/bin/beeline
+!connect jdbc:hive2://localhost:10000 admin/admin - for hive 2 server
+!connect jdbc:hive2://localhost:10016 admin/admin - for spark thrift server
+
+
+export PATH=$PATH:/usr/jdk64/jdk1.8.0_112/bin
+export JAVA_HOME=/usr/jdk64/jdk1.8.0_112
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --topic stock-quotes --zookeeper devbox.hdpdev.verax.ca:2181 --partitions 1 --replication-factor 1
+log.retention.hours=24 (168 or 1 week is the default)
+https://finance.google.com/finance/getprices?q=MSFT&x=NASDAQ&p=15d&i=86399&f=d,o,h,l,c,v
+https://finance.google.com/finance/getprices?x=TSE&q=BMO&p=15d&i=86399&f=d,o,h,l,c,v
+https://www.google.com/finance/getprices?q=BMO&x=TSE&p=15d&i=86399&f=d,o,h,l,c,v
+est = utc + 14400
+returns date as unix timestamp. multipley by 1000 to get java timestamp
+/targets/kafka/verax-kafka-stock-quotes producer 60 15 symbols 15 
+
+HDFS Commands
+root@developmentBox:~# su - hdfs
+hdfs@developmentBox:~$ hadoop fs -mkdir /user/admin
+hdfs@developmentBox:~$ hadoop fs -chown admin:hadoop /user/admin
+hdfs@developmentBox:~$ hadoop fs -ls /
+
+mysql -u root -p
+
+
+cd /usr/hdp/current/hive-server2/bin
+cd /usr/hdp/current/kafka-broker/libs/kafka-clients-0.10.1.2.6.1.0-129.jar
+pscp -scp -i E:/vrxvmkey.ppk root@127.0.0.1:/usr/hdp/current/kafka-broker/libs/kafka-clients-0.10.1.2.6.1.0-129.jar E:\vboxshare\verax-kafka-poc2\src\main\resources
+
+echo  ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvw9NzjCYoCu8XzOjrG3/IoaPddzZ1zC2jsEDyY6jj5qHv91smD7pywXZxQUYnXlMCPU6u/4lKR6EWLV1DKiHZm8x6o7t67No4S/opIo/woA2lDvrTWPz22ZQ+HkF3/wlT4krUmescOQqlSeimdevxKEY+5nSTengWGuM9ihjltgezmXlMs/XzWz/TOp+e8h5TZgw3Q8WVJ2ou1TNZgbRl/5nme4IFe5yLleibyAu+FmElH8WwgjSnB/EVUPHbm1FlMOsI0YJnudG89736M1buAtRID+DFOEiw1K1AgsijuN7jm/fRlDlXPSLtKE5ViZQAhEaWm0cT4+2JGsuZ0r/+w== root@vrxhdpmgmnod >> /root/.ssh/authorized_keys
+
+ssh root@vrxhdphbsnod.eastus.cloudapp.azure.com
+ssh root@vrxhdpkfknod.eastus.cloudapp.azure.com
+ssh root@vrxhdpmgmnod.eastus.cloudapp.azure.com
+ssh root@vrxhdpspknod.eastus.cloudapp.azure.com
+
+cd /usr/hdp/current/kafka-broker/bin/
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --topic test --zookeeper devbox.hdpdev.verax.ca:2181 --partitions 1 --replication-factor 1
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper devbox.hdpdev.verax.ca:2181
+/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --describe --zookeeper devbox.hdpdev.verax.ca:2181 --topic stock-quotes
+/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list devbox.hdpdev.verax.ca:9092 --topic stock-quotes
+/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --bootstrap-server devbox.hdpdev.verax.ca:9092 --topic stock-quotes --from-beginning
+
+export PATH=$PATH:/usr/jdk64/jdk1.8.0_112/bin
+export JAVA_HOME=/usr/jdk64/jdk1.8.0_112 
+wget http://central.maven.org/maven2/org/apache/spark/spark-streaming-kafka-0-10_2.11/2.1.0/spark-streaming-kafka-0-10_2.11-2.1.0.jar
+wget http://central.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.11/2.1.0/spark-sql-kafka-0-10_2.11-2.1.0.jar
+wget http://central.maven.org/maven2/org/apache/spark/spark-streaming-kafka-0-10-assembly_2.10/2.1.0/spark-streaming-kafka-0-10-assembly_2.10-2.1.0.jar
+
+Zeppelin Interpreter dependencies for Spark 2:
+org.apache.spark:spark-streaming-kafka-0-10_2.11:2.1.0,
+/usr/hdp/2.6.1.0-129/kafka/libs/kafka_2.10-0.10.1.2.6.1.0-129.jar 
+/usr/hdp/2.6.1.0-129/kafka/libs/kafka-clients-0.10.1.2.6.1.0-129.jar
+
+
+Conventional Streaming 
+/usr/hdp/current/spark2-client/bin/spark-shell --jars,/root/targets/spark/spark-streaming-kafka.jar,/usr/hdp/2.6.1.0-129/kafka/libs/kafka_2.10-0.10.1.2.6.1.0-129.jar,/usr/hdp/2.6.1.0-129/kafka/libs/kafka-clients-0.10.1.2.6.1.0-129.jar
+
+Structured Streaming
+/usr/hdp/current/spark2-client/bin/spark-shell --conf spark.sql.hive.thriftServer.singleSession=true --jars /root/targets/spark/api/spark-sql-kafka-0-10_2.11-2.1.0.jar,/root/targets/spark/api/spark-streaming-kafka-0-10-assembly_2.10-2.1.0.jar
+
+Spark Shell commands
+sc.getConf.getAll.mkString("\n")
+
+Beeline
+/usr/hdp/current/spark2-client/bin/beeline
+!connect jdbc:hive2://localhost:10000 admin/admin - for hive 2 server
+!connect jdbc:hive2://localhost:10016 admin/admin - for spark thrift server
+
+Hive
+%jdbc(hive)
+SELECT `exchange`, ticker, open, close, high, low, volume,CAST(lasttradedate as TIMESTAMP) as tradedate
+FROM quotes
+
+
+
+%spark2
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.SparkSession
+import spark.implicits._
+import spark.sql
+
+%spark2
+val warehouseLocation = "spark-warehouse"
+val spark = SparkSession
+  .builder()
+  .appName("Spark Hive Example")
+  .config("spark.sql.warehouse.dir", warehouseLocation)
+  .enableHiveSupport()
+  .getOrCreate()
+  
+%spark2
+val quotesDF = sql("SELECT `exchange`, ticker, cast(lasttradedate as timestamp) as tradedate, open, close, high, low, volume FROM quotes").show()
+
+http://devbox.hdpdev.verax.ca:8080/
+
+Get-ChildItem -Path E:\Documents\Verax\bmo-investorline-rad-projects -Include *.* -File -Recurse | foreach { $_.Delete()}
